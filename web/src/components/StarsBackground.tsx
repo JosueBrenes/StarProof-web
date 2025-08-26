@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useMemo, memo } from "react"
 import { motion } from "framer-motion"
-import { memo } from "react"
+
+const SLOWDOWN = 3 // 1 = igual; >1 = más lento; <1 = más rápido
 
 const StarsBackground = memo(() => {
   const [screenSize, setScreenSize] = useState({ width: 0, height: 0 })
@@ -23,15 +24,14 @@ const StarsBackground = memo(() => {
       size: Math.random() * 2.5 + 2,
       initialX: Math.random() * 120 - 10,
       initialY: Math.random() * 120 - 20,
-      duration: Math.random() * 12 + 8,
-      delay: Math.random() * 20,
+      // antes: Math.random() * 12 + 8  (8s a 20s)
+      duration: (Math.random() * 12 + 8) * SLOWDOWN, // ahora más lento
+      delay: Math.random() * 20, // puedes subirlo un poco si quieres más “pausas”
       opacity: Math.random() * 0.7 + 0.3,
     }))
   }, [isClient])
 
-  if (!isClient) {
-    return null
-  }
+  if (!isClient) return null
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
