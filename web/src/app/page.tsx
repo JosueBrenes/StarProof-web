@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import Aurora from "@/components/Aurora"
 import StarsBackground from "@/components/StarsBackground"
+import UseCasesCarousel from "@/components/UseCasesCarousel"
 import {
   ShieldCheck,
   Link,
@@ -27,6 +28,7 @@ import {
   Users,
   Award,
 } from "lucide-react"
+import Image from "next/image"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -93,7 +95,13 @@ export default function StarProofLanding() {
       <nav className="relative z-10 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Star className="w-8 h-8 text-primary" />
+            <Image 
+              src="/preview-img1.png" 
+              alt="StarProof Logo" 
+              width={32} 
+              height={32} 
+              className="w-8 h-8"
+            />
             <span className="text-2xl font-bold">StarProof</span>
           </div>
           <div className="flex items-center space-x-4">
@@ -239,47 +247,8 @@ export default function StarProofLanding() {
           <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
             Use cases
           </motion.h2>
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                title: "Escrow Completed",
-                description: "Prove an escrow settled successfully.",
-                icon: <CheckCircle className="w-6 h-6" />,
-              },
-              {
-                title: "Grant Delivered",
-                description: "Attest deliveries tied to grants.",
-                icon: <Award className="w-6 h-6" />,
-              },
-              {
-                title: "KYC Verified",
-                description: "Share-only-the-proof, not the PII.",
-                icon: <ShieldCheck className="w-6 h-6" />,
-              },
-              {
-                title: "Participation Badge",
-                description: "Badges for events, hackathons, courses.",
-                icon: <Users className="w-6 h-6" />,
-              },
-            ].map((useCase, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-all duration-300 hover:scale-105 rounded-2xl">
-                  <CardHeader>
-                    <div className="flex space-x-4 mb-2">
-                      {useCase.icon}
-                      <CardTitle className="text-lg">{useCase.title}</CardTitle>
-                    </div>
-                    <CardDescription className="text-muted-foreground">{useCase.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
+          <motion.div {...fadeInUp}>
+            <UseCasesCarousel />
           </motion.div>
         </div>
       </section>
