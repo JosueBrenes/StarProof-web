@@ -15,7 +15,7 @@ export default function UseCasesCarousel() {
       <motion.div
         className="flex gap-4"
         animate={{ x: ["0%", "-100%"] }}
-        transition={{ duration: 999, ease: "linear", repeat: Infinity }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
       >
         
         {[...cases, ...cases].map(({ Icon, title, desc }, i) => (

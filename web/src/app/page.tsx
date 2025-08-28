@@ -29,6 +29,10 @@ import {
   Award,
 } from "lucide-react"
 import Image from "next/image"
+import ScrollProgress from "@/components/ScrollProgress"
+import AnimatedText from "@/components/AnimatedText";
+
+
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -84,6 +88,7 @@ export default function StarProofLanding() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <ScrollProgress />
       {/* Starfield Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-[#1B1F2E]" />
@@ -104,32 +109,29 @@ export default function StarProofLanding() {
             />
             <span className="text-2xl font-bold">StarProof</span>
           </div>
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
-              Try Demo
-            </Button>
-            <Button className="bg-gradient-to-r from-[#1B6BFF] to-[#8F43FF] text-white hover:from-[#1657CC] hover:to-[#7A36E0] rounded-2xl h-12 px-6 font-semibold shadow-lg transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1B6BFF]/40">
-              Get API Key
-            </Button>
-          </div>
+          
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="relative z-10 px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent"
-            {...fadeInUp}
-          >
-            Issue trust at the speed of light.
-          </motion.h1>
+          <div className="mb-6">
+            <AnimatedText
+              text="Welcome to StarProof"
+              className="text-7xl font-bold"
+              animationType="letters"
+              staggerDelay={0.08} 
+              duration={0.9}
+            />
+          </div>
+          
           <motion.p
             className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
             {...fadeInUp}
             transition={{ delay: 0.2 }}
           >
-            One API. Zero databases. Verifiable credentials on Stellar.
+            One API. Easy to use. Verifiable credentials on Stellar.
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -137,14 +139,9 @@ export default function StarProofLanding() {
             transition={{ delay: 0.4 }}
           >
             <Button className="bg-gradient-to-r from-[#1B6BFF] to-[#8F43FF] text-white hover:from-[#1657CC] hover:to-[#7A36E0] rounded-2xl h-12 px-6 font-semibold shadow-lg transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#1B6BFF]/40">
-              Get API Key
+              Try our Demo!
             </Button>
-            <Button
-              variant="outline"
-              className="border-border/70 text-foreground hover:bg-card/50 rounded-2xl h-12 px-6 bg-transparent"
-            >
-              Try Demo
-            </Button>
+            
           </motion.div>
         </div>
       </section>
@@ -259,73 +256,7 @@ export default function StarProofLanding() {
           <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
             Live verification demo
           </motion.h2>
-          <motion.div {...fadeInUp}>
-            <Card className="bg-card/50 backdrop-blur-sm border-border/50 rounded-2xl">
-              <CardHeader>
-                <div className="flex space-x-4 mb-4">
-                  {[
-                    { id: "verified", label: "Verified", icon: CheckCircle },
-                    { id: "expired", label: "Expired", icon: AlertTriangle },
-                    { id: "revoked", label: "Revoked", icon: XCircle },
-                  ].map(({ id, label, icon: Icon }) => (
-                    <Button
-                      key={id}
-                      variant={activeDemo === id ? "default" : "outline"}
-                      onClick={() => setActiveDemo(id)}
-                      className="flex items-center space-x-2"
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span>{label}</span>
-                    </Button>
-                  ))}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Status:</span>
-                    <Badge
-                      className={
-                        activeDemo === "verified"
-                          ? "bg-[#00D27A] text-white"
-                          : activeDemo === "expired"
-                            ? "bg-[#FFB020] text-white"
-                            : "bg-[#FF4D4F] text-white"
-                      }
-                    >
-                      {activeDemo === "verified" ? "✓ Verified" : activeDemo === "expired" ? "⚠ Expired" : "✖ Revoked"}
-                    </Badge>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">Issuer:</span>
-                      <p>Stellar Foundation</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Type:</span>
-                      <p>KYC Certificate</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Receiver:</span>
-                      <p>john.doe@example.com</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Amount:</span>
-                      <p>$50,000 USD</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Date:</span>
-                      <p>2024-01-15</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">TX ID:</span>
-                      <p className="font-mono text-xs">abc123...def789</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          {/* Aca poner credencial y poner el swap de una tarjeta al reverso */}
         </div>
       </section>
 
