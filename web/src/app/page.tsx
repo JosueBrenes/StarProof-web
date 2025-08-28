@@ -28,6 +28,7 @@ import {
   Users,
   Award,
 } from "lucide-react"
+import CredentialCard from "@/components/CredentialCard"
 import Image from "next/image"
 import ScrollProgress from "@/components/ScrollProgress"
 import AnimatedText from "@/components/AnimatedText";
@@ -256,7 +257,9 @@ export default function StarProofLanding() {
           <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
             Live verification demo
           </motion.h2>
-          {/* Aca poner credencial y poner el swap de una tarjeta al reverso */}
+          <motion.div className="flex justify-center" {...fadeInUp}>
+            <CredentialCard />
+          </motion.div>
         </div>
       </section>
 
