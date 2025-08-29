@@ -27,7 +27,9 @@ import {
   Globe,
   Users,
   Award,
+  CreditCard,
 } from "lucide-react"
+import FlipCredential from "@/components/FlipCredential"
 import CredentialCard from "@/components/CredentialCard"
 import Image from "next/image"
 import ScrollProgress from "@/components/ScrollProgress"
@@ -258,7 +260,8 @@ export default function StarProofLanding() {
             Live verification demo
           </motion.h2>
           <motion.div className="flex justify-center" {...fadeInUp}>
-            <CredentialCard />
+            {/* <CredentialCard /> */}
+            <FlipCredential /> 
           </motion.div>
         </div>
       </section>
