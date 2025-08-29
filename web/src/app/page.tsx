@@ -30,10 +30,10 @@ import {
   CreditCard,
 } from "lucide-react"
 import FlipCredential from "@/components/FlipCredential"
-import CredentialCard from "@/components/CredentialCard"
 import Image from "next/image"
 import ScrollProgress from "@/components/ScrollProgress"
 import AnimatedText from "@/components/AnimatedText";
+import HowItWorks from "@/components/HowItWorks";
 
 
 
@@ -196,47 +196,8 @@ export default function StarProofLanding() {
           <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
             How it works
           </motion.h2>
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                step: "1",
-                icon: <Globe className="w-8 h-8" />,
-                title: "Issuer emits credential",
-                description: "Use our API or admin panel to create verifiable credentials",
-              },
-              {
-                step: "2",
-                icon: <Link className="w-8 h-8" />,
-                title: "Hash stored on-chain",
-                description: "Document hash goes to Stellar blockchain, encrypted data stays off-chain",
-              },
-              {
-                step: "3",
-                icon: <ShieldCheck className="w-8 h-8" />,
-                title: "Anyone verifies instantly",
-                description: "Share verification link or embed widget for instant proof",
-              },
-            ].map((step, index) => (
-              <motion.div key={index} variants={fadeInUp} className="relative">
-                <Card className="bg-card/50 backdrop-blur-sm border-border/50 rounded-2xl p-6">
-                  <div className="flex items-center mb-4">
-                    <Badge className="bg-primary text-primary-foreground mr-4 text-lg px-3 py-1">{step.step}</Badge>
-                    <div className="text-primary">{step.icon}</div>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </Card>
-                {index < 2 && (
-                  <ArrowRight className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-8 h-8" />
-                )}
-              </motion.div>
-            ))}
+          <motion.div {...fadeInUp}>
+            <HowItWorks />
           </motion.div>
         </div>
       </section>
@@ -257,10 +218,9 @@ export default function StarProofLanding() {
       <section className="relative z-10 px-6 py-20">
         <div className="max-w-4xl mx-auto">
           <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
-            Live verification demo
+            Credential Demo
           </motion.h2>
           <motion.div className="flex justify-center" {...fadeInUp}>
-            {/* <CredentialCard /> */}
             <FlipCredential /> 
           </motion.div>
         </div>
@@ -389,7 +349,7 @@ export default function StarProofLanding() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground">
-            © 2024 StarProof. Issue trust at the speed of light.
+            © 2025 StarProof. Issue trust at the speed of light.
           </div>
         </div>
       </footer>
