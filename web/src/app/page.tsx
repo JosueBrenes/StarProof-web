@@ -36,6 +36,7 @@ import AnimatedText from "@/components/AnimatedText";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import FAQ from "@/components/FAQ";
+import Footer from "@/components/Footer";
 
 
 
@@ -217,31 +218,7 @@ export default function StarProofLanding() {
 
       {/* Footer */}
       <footer className="relative z-10 px-6 py-12 border-t border-border/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Star className="w-6 h-6 text-primary" />
-              <span className="text-xl font-bold">StarProof</span>
-            </div>
-            <div className="flex space-x-6 text-sm text-muted-foreground">
-              <a href="/legal/terms" className="hover:text-foreground transition-colors">
-                Terms of Service
-              </a>
-              <a href="/legal/privacy" className="hover:text-foreground transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-foreground transition-colors">
-                Twitter
-              </a>
-              <a href="#" className="hover:text-foreground transition-colors">
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground">
-            © 2025 StarProof. Issue trust at the speed of light.
-          </div>
-        </div>
+        <Footer />
       </footer>
     </div>
   )
