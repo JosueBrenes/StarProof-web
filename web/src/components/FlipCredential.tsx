@@ -11,11 +11,11 @@ import { motion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 
 type Props = {
-  /** Ruta de la estrella (PNG/SVG/WebP). */
+  /** Star image path (PNG/SVG/WebP). */
   starUrl?: string;         // default: /star.png
-  /** Opacidad de la estrella (0–1). */
+  /** Star opacity (0–1). */
   starOpacity?: number;     // default: 0.18
-  /** Ancho máximo del card en desktop; en mobile usa 92vw. */
+  /** Maximum card width on desktop; on mobile uses 92vw. */
   maxWidth?: number;        // default: 980
 };
 
@@ -33,7 +33,7 @@ export default function FlipCredential({
     }
   };
 
-  // Medimos ancho real para escalar QR y tipografías.
+  // Measure real width to scale QR and typography.
   const ref = useRef<HTMLDivElement>(null);
   const [realW, setRealW] = useState<number>(maxWidth);
   useEffect(() => {
@@ -46,27 +46,28 @@ export default function FlipCredential({
     return () => ro.disconnect();
   }, []);
 
-  // Flag: ¿pantalla estrecha?
-  const isNarrow = realW <= 520;
+  // Flag: narrow screen?
+  const isNarrow = realW <= 640;
+  const isMobile = realW <= 480;
 
-  // Escalado fluido
+  // Improved fluid scaling
   const base = 980;
   const scale = useMemo(
-    () => Math.max(0.6, Math.min(1.35, realW / base)),
+    () => Math.max(0.5, Math.min(1.35, realW / base)),
     [realW]
   );
-  const titleSize = `clamp(20px, ${28 * scale}px, 34px)`;
-  const bodySize = `clamp(14px, ${16 * scale}px, 18px)`;
-  const detailsSize = `clamp(15px, ${18 * scale}px, 20px)`;
-  const disclaimerSize = `clamp(11px, ${12 * scale}px, 14px)`;
+  const titleSize = `clamp(16px, ${isMobile ? 20 : 28 * scale}px, 34px)`;
+  const bodySize = `clamp(12px, ${isMobile ? 14 : 16 * scale}px, 18px)`;
+  const detailsSize = `clamp(13px, ${isMobile ? 16 : 18 * scale}px, 20px)`;
+  const disclaimerSize = `clamp(10px, ${isMobile ? 11 : 12 * scale}px, 14px)`;
 
-  // QR: en móvil lo reducimos un poco si quieres, pero igual cabrá porque el card es más alto
-  const qrFront = Math.round(Math.min(0.32 * realW, isNarrow ? 260 : 320));
-  const qrBack  = Math.max(120, Math.round(0.18 * realW));
+  // Improved QR sizes for mobile
+  const qrFront = Math.round(Math.min(0.32 * realW, isMobile ? 200 : isNarrow ? 240 : 320));
+  const qrBack  = Math.max(100, Math.round(isMobile ? 0.15 * realW : 0.18 * realW));
 
-  // Aspect ratio dinámico
-  const aspect = isNarrow ? "16 / 14" : "16 / 10";
-  const minH   = isNarrow ? 460 : 320;
+  // Improved dynamic aspect ratio
+  const aspect = isMobile ? "4 / 5" : isNarrow ? "16 / 14" : "16 / 10";
+  const minH   = isMobile ? 500 : isNarrow ? 460 : 320;
 
   return (
     <div className="relative z-50 isolate mx-auto" style={{ perspective: 1200 }}>
@@ -99,16 +100,17 @@ export default function FlipCredential({
             transform: "translateZ(0)",
           }}
         >
-          {/* Fondo negro sólido */}
+          {/* Solid black background */}
           <div className="absolute inset-0 bg-black pointer-events-none rounded-2xl" />
 
-          {/* Estrella como imagen superpuesta */}
+          {/* Star as overlay image */}
           <div className="absolute inset-0 pointer-events-none">
             <div
-              className="absolute left-0 top-0 h-full w-[100%] sm:w-[100%] md:w-[100%] lg:w-[100%] bg-left bg-no-repeat"
+              className="absolute left-0 top-0 h-full w-full bg-no-repeat"
               style={{
                 backgroundImage: `url(${starUrl})`,
                 backgroundSize: "contain",
+                backgroundPosition: "left center",
                 opacity: starOpacity,
                 filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.45))",
               }}
@@ -116,19 +118,19 @@ export default function FlipCredential({
             />
           </div>
 
-          {/* Contenido */}
-          <div className="relative h-full w-full grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 p-4 md:p-8 pb-5">
-            {/* Izquierda */}
-            <div className="md:col-span-7 flex flex-col">
-              <div className="flex items-center gap-3 md:gap-4 pt-1">
-                <HexLogo className="h-7 w-7 md:h-10 md:w-10 text-white/90" />
+          {/* Content */}
+          <div className={`relative h-full w-full ${isMobile ? 'flex flex-col' : 'grid grid-cols-1 md:grid-cols-12'} gap-3 sm:gap-4 md:gap-6 p-3 sm:p-4 md:p-8 ${isMobile ? 'pb-3' : 'pb-5'}`}>
+            {/* Left side */}
+            <div className={`${isMobile ? 'flex-1' : 'md:col-span-7'} flex flex-col ${isMobile ? 'min-h-0' : ''}`}>
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4 pt-1">
+                <HexLogo className={`${isMobile ? 'h-6 w-6' : 'h-7 w-7 md:h-10 md:w-10'} text-white/90 flex-shrink-0`} />
                 <h1 className="font-semibold tracking-wide" style={{ fontSize: titleSize }}>
                   Escrow Completed
                 </h1>
               </div>
 
               <div
-                className="mt-5 md:mt-8 space-y-3 md:space-y-4 font-serif"
+                className={`${isMobile ? 'mt-3 space-y-2' : 'mt-5 md:mt-8 space-y-3 md:space-y-4'} font-serif flex-1`}
                 style={{ fontSize: detailsSize, lineHeight: 1.45 }}
               >
                 <p><span className="text-white/80">Holder:</span> Daniel Coto</p>
@@ -139,9 +141,9 @@ export default function FlipCredential({
               </div>
             </div>
 
-            {/* Derecha: QR */}
-            <div className="md:col-span-5 flex items-center justify-center">
-              <div className="rounded-xl p-3 md:p-4 bg-white/5">
+            {/* Right side: QR */}
+            <div className={`${isMobile ? 'flex-shrink-0 self-center' : 'md:col-span-5'} flex items-center justify-center ${isMobile ? 'mt-2' : ''}`}>
+              <div className={`rounded-xl ${isMobile ? 'p-2' : 'p-3 md:p-4'} bg-white/5`}>
                 <QRCodeSVG
                   value="https://starproof.app/demo/credential/123"
                   level="M"
@@ -154,8 +156,8 @@ export default function FlipCredential({
             </div>
 
             {/* Disclaimer */}
-            <div className="md:col-span-12 col-span-1 flex items-end">
-              <p className="ml-auto italic text-white/70" style={{ fontSize: disclaimerSize }}>
+            <div className={`${isMobile ? 'mt-auto pt-2' : 'md:col-span-12 col-span-1'} flex items-end`}>
+              <p className={`${isMobile ? 'text-center w-full' : 'ml-auto'} italic text-white/70`} style={{ fontSize: disclaimerSize }}>
                 *This credential is a demo issued by StarProof. It has no legal validity and does not
                 represent an official verification*
               </p>
@@ -173,10 +175,10 @@ export default function FlipCredential({
             background: "linear-gradient(145deg, rgba(20,20,20,0.95), rgba(10,10,10,0.95))",
           }}
         >
-          <div className="relative h-full w-full grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 p-4 md:p-8">
-            <div className="md:col-span-7">
+          <div className={`relative h-full w-full ${isMobile ? 'flex flex-col' : 'grid grid-cols-1 md:grid-cols-12'} gap-3 sm:gap-4 md:gap-6 p-3 sm:p-4 md:p-8`}>
+            <div className={`${isMobile ? 'flex-1' : 'md:col-span-7'}`}>
               <dl
-                className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4"
+                className={`grid grid-cols-1 ${isMobile ? 'gap-2' : 'sm:grid-cols-2 gap-3 md:gap-4'}`}
                 style={{ fontSize: bodySize }}
               >
                 {[
@@ -186,15 +188,15 @@ export default function FlipCredential({
                   { k: "Status", v: "Active" },
                   { k: "On-chain hash", v: "0x8f7a…b21c" },
                 ].map((f) => (
-                  <div key={f.k} className="rounded-lg bg-white/5 px-4 py-3 border border-white/10">
-                    <dt className="text-xs uppercase tracking-wide text-white/60">{f.k}</dt>
-                    <dd className="mt-1">{f.v}</dd>
+                  <div key={f.k} className={`rounded-lg bg-white/5 ${isMobile ? 'px-3 py-2' : 'px-4 py-3'} border border-white/10`}>
+                    <dt className={`${isMobile ? 'text-xs' : 'text-xs'} uppercase tracking-wide text-white/60`}>{f.k}</dt>
+                    <dd className="mt-1 break-all">{f.v}</dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            <div className="md:col-span-5 flex items-center justify-center">
+            <div className={`${isMobile ? 'flex-shrink-0 self-center mt-3' : 'md:col-span-5'} flex items-center justify-center`}>
               <QRCodeSVG
                 value="https://starproof.app/verify/cred_9f2a-1234-abcd"
                 level="M"
@@ -204,8 +206,8 @@ export default function FlipCredential({
               />
             </div>
 
-            <div className="md:col-span-12 col-span-1 flex items-end">
-              <p className="text-white/60" style={{ fontSize: disclaimerSize }}>
+            <div className={`${isMobile ? 'mt-auto pt-2' : 'md:col-span-12 col-span-1'} flex items-end`}>
+              <p className={`text-white/60 ${isMobile ? 'text-center w-full' : ''}`} style={{ fontSize: disclaimerSize }}>
                 Back • StarProof
               </p>
             </div>
@@ -216,7 +218,7 @@ export default function FlipCredential({
   );
 }
 
-/** ------ Logo simple hexagonal (placeholder) ------ */
+/** ------ Simple hexagonal logo (placeholder) ------ */
 function HexLogo({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" className={className} aria-hidden="true">

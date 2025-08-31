@@ -51,8 +51,8 @@ function StepCard({ data }: { data: Step }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    // 🔑 altura explícita para que el grid no colapse
-    <div className="relative h-[460px] md:h-[420px] lg:h-[440px]" style={{ perspective: 1200 }}>
+    //  explicit height so the grid doesn't collapse
+    <div className="relative h-[460px] sm:h-[480px] md:h-[520px] lg:h-[440px]" style={{ perspective: 1200 }}>
       <motion.div
         className="relative h-full"
         style={{ transformStyle: "preserve-3d" }}
@@ -113,7 +113,7 @@ function StepCard({ data }: { data: Step }) {
         >
           <div className="mb-2 text-sm font-semibold text-white/80">Sample</div>
 
-          {/* 🔑 Área scrollable para el código */}
+          {/*  Scrollable area for the code */}
           <div className="flex-1 min-h-0 overflow-y-auto pr-1 scrollbar-thin">
             {data.snippet ? (
               <Code>{data.snippet}</Code>
@@ -217,9 +217,9 @@ export default function HowItWorks() {
   return (
     <section aria-labelledby="how-it-works">
       <div className="relative">
-        {/* línea con gradiente (opcional) */}
+        {/* gradient line (optional) */}
         <svg
-          className="pointer-events-none absolute left-0 top-1/2 hidden h-24 w-full -translate-y-1/2 md:block"
+          className="pointer-events-none absolute left-0 top-1/2 hidden h-24 w-full -translate-y-1/2 lg:block"
           viewBox="0 0 100 24"
           preserveAspectRatio="none"
         >
@@ -242,7 +242,7 @@ export default function HowItWorks() {
         </svg>
 
         <motion.div
-          className="grid items-stretch gap-6 md:grid-cols-3"
+          className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3"
           variants={staggerChildren}
           initial="initial"
           whileInView="animate"
@@ -257,7 +257,7 @@ export default function HowItWorks() {
       </div>
 
       {/* Footnotes */}
-      <div className="mt-8 grid gap-3 text-center text-xs text-white/60 md:grid-cols-3">
+      <div className="mt-8 grid gap-3 text-center text-xs text-white/60 sm:grid-cols-2 lg:grid-cols-3">
         <div className="rounded-xl border border-white/10 bg-black/30 p-3 pt-4">
           <span className="font-semibold text-white/80">Privacy by design</span>
           <div>Only hash + status on-chain. VC stays encrypted off-chain.</div>

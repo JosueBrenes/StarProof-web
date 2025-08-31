@@ -5,11 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import Aurora from "@/components/Aurora"
 import StarsBackground from "@/components/StarsBackground"
@@ -32,10 +28,10 @@ import {
 import FlipCredential from "@/components/FlipCredential"
 import Image from "next/image"
 import ScrollProgress from "@/components/ScrollProgress"
-import AnimatedText from "@/components/AnimatedText";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import FAQ from "@/components/FAQ";
+import { TextAnimate } from "@/components/magicui/text-animate"
 
 
 
@@ -85,20 +81,16 @@ export default function StarProofLanding() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-6">
-            <AnimatedText
-              text="Welcome to StarProof"
-              className="text-7xl font-bold"
-              animationType="letters"
-              staggerDelay={0.08} 
-              duration={0.9}
-            />
+            <TextAnimate animation="blurIn" as="h1" className="text-4xl sm:text-6xl lg:text-8xl font-bold">
+              Welcome to StarProof
+            </TextAnimate>
           </div>
           
           <motion.p
-            className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto px-4"
             {...fadeInUp}
             transition={{ delay: 0.2 }}
           >
@@ -118,10 +110,10 @@ export default function StarProofLanding() {
       </section>
 
       {/* Value Props */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            className="grid md:grid-cols-3 gap-8"
+            className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
             variants={staggerChildren}
             initial="initial"
             whileInView="animate"
@@ -159,9 +151,9 @@ export default function StarProofLanding() {
       </section>
 
       {/* How It Works */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
+          <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-16" {...fadeInUp}>
             How it works
           </motion.h2>
           <motion.div {...fadeInUp}>
@@ -171,9 +163,9 @@ export default function StarProofLanding() {
       </section>
 
       {/* Use Cases */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
+          <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-16" {...fadeInUp}>
             Use cases
           </motion.h2>
           <motion.div {...fadeInUp}>
@@ -183,9 +175,9 @@ export default function StarProofLanding() {
       </section>
 
       {/* Verifier Demo */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-4xl mx-auto">
-          <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
+          <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-16" {...fadeInUp}>
             Credential Demo
           </motion.h2>
           <motion.div className="flex justify-center" {...fadeInUp}>
@@ -195,7 +187,7 @@ export default function StarProofLanding() {
       </section>
 
       {/* Waitlist Form */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-2xl mx-auto">
           <motion.div {...fadeInUp}>
             <WaitlistForm />
@@ -204,9 +196,9 @@ export default function StarProofLanding() {
       </section>
 
       {/* FAQ */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-4xl mx-auto">
-          <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
+          <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-16" {...fadeInUp}>
             Frequently asked questions
           </motion.h2>
           <motion.div {...fadeInUp}>
@@ -216,7 +208,7 @@ export default function StarProofLanding() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 px-6 py-12 border-t border-border/50">
+      <footer className="relative z-10 px-4 sm:px-6 py-8 sm:py-12 border-t border-border/50">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
