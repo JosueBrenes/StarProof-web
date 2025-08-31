@@ -150,18 +150,6 @@ export default function StarProofLanding() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-16" {...fadeInUp}>
-            How it works
-          </motion.h2>
-          <motion.div {...fadeInUp}>
-            <HowItWorks />
-          </motion.div>
-        </div>
-      </section>
-
       {/* Use Cases */}
       <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto">
@@ -170,6 +158,18 @@ export default function StarProofLanding() {
           </motion.h2>
           <motion.div {...fadeInUp}>
             <UseCasesCarousel />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-16" {...fadeInUp}>
+            How it works
+          </motion.h2>
+          <motion.div {...fadeInUp}>
+            <HowItWorks />
           </motion.div>
         </div>
       </section>
