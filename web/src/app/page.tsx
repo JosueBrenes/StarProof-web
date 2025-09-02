@@ -10,28 +10,16 @@ import { useToast } from "@/hooks/use-toast"
 import Aurora from "@/components/Aurora"
 import StarsBackground from "@/components/StarsBackground"
 import UseCasesCarousel from "@/components/UseCasesCarousel"
-import {
-  ShieldCheck,
-  Link,
-  Lock,
-  Zap,
-  ArrowRight,
-  CheckCircle,
-  AlertTriangle,
-  XCircle,
-  Star,
-  Globe,
-  Users,
-  Award,
-  CreditCard,
-} from "lucide-react"
 import FlipCredential from "@/components/FlipCredential"
 import Image from "next/image"
 import ScrollProgress from "@/components/ScrollProgress"
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import FAQ from "@/components/FAQ";
+import ValueProposition from "@/components/ValueProposition";
 import { TextAnimate } from "@/components/magicui/text-animate"
+import Footer from "@/components/Footer"
+import { Particles } from "@/components/magicui/particles"
 
 
 
@@ -60,7 +48,18 @@ export default function StarProofLanding() {
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-[#1B1F2E]" />
         <Aurora />
-        <StarsBackground />
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={60}
+          staticity={40}
+          ease={70}
+          size={0.4}
+          vx={0}
+          vy={0}
+          color="#ffffff"
+        />
+        {/* <StarsBackground /> */}
+        
       </div>
 
       {/* Navigation */}
@@ -94,7 +93,7 @@ export default function StarProofLanding() {
             {...fadeInUp}
             transition={{ delay: 0.2 }}
           >
-            One API. Easy to use. Verifiable credentials on Stellar.
+            One API. Zero databases. Verifiable credentials on Stellar.
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -109,44 +108,10 @@ export default function StarProofLanding() {
         </div>
       </section>
 
-      {/* Value Props */}
+      {/* ValueProposition */}
       <section className="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                icon: <Zap className="w-8 h-8" />,
-                title: "One-click verification",
-                description: "Portal & embeddable widget",
-              },
-              {
-                icon: <CheckCircle className="w-8 h-8" />,
-                title: "Live status tracking",
-                description: "Active / revoked / expired",
-              },
-              {
-                icon: <Lock className="w-8 h-8" />,
-                title: "API/SDK integration",
-                description: "Integrate in hours, not weeks",
-              },
-            ].map((prop, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/70 transition-all duration-300 hover:scale-105 rounded-2xl">
-                  <CardHeader>
-                    <div className="text-primary mb-4">{prop.icon}</div>
-                    <CardTitle className="text-xl">{prop.title}</CardTitle>
-                    <CardDescription className="text-muted-foreground">{prop.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+          <ValueProposition />
         </div>
       </section>
 
@@ -209,31 +174,7 @@ export default function StarProofLanding() {
 
       {/* Footer */}
       <footer className="relative z-10 px-4 sm:px-6 py-8 sm:py-12 border-t border-border/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Star className="w-6 h-6 text-primary" />
-              <span className="text-xl font-bold">StarProof</span>
-            </div>
-            <div className="flex space-x-6 text-sm text-muted-foreground">
-              <a href="/legal/terms" className="hover:text-foreground transition-colors">
-                Terms of Service
-              </a>
-              <a href="/legal/privacy" className="hover:text-foreground transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-foreground transition-colors">
-                Twitter
-              </a>
-              <a href="#" className="hover:text-foreground transition-colors">
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground">
-            © 2025 StarProof. Issue trust at the speed of light.
-          </div>
-        </div>
+          <Footer />
       </footer>
     </div>
   )
