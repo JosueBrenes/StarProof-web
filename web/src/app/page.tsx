@@ -1,15 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { useToast } from "@/hooks/use-toast"
-import { Sparkles } from "lucide-react"
 import Aurora from "@/components/Aurora"
-import StarsBackground from "@/components/StarsBackground"
 import UseCasesCarousel from "@/components/UseCasesCarousel"
 import FlipCredential from "@/components/FlipCredential"
 import Image from "next/image"
@@ -30,17 +24,7 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 }
 
-const staggerChildren = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
 export default function StarProofLanding() {
-  const [activeDemo, setActiveDemo] = useState("verified")
-  const { toast } = useToast()
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">

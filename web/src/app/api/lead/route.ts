@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message: "Lead submitted successfully",
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, message: "Failed to submit lead" }, { status: 500 })
   }
 }

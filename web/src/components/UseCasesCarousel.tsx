@@ -50,7 +50,7 @@ const cases = [
 // ---------------------------------------------
 // Card
 // ---------------------------------------------
-function CaseCard({ Icon, title, desc }: { Icon: any; title: string; desc: string }) {
+function CaseCard({ Icon, title, desc }: { Icon: React.ComponentType<{ className?: string }>; title: string; desc: string }) {
   return (
     <div className="min-w-[260px] sm:min-w-[280px] rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm flex-shrink-0">
       <Icon className="mb-3 h-6 w-6 text-white/70" />
@@ -100,13 +100,13 @@ export default function UseCasesCarousel({
   }, [respectReducedMotion]);
 
   const varsA = {
-    ["--duration" as any]: reduced ? "0s" : `${durationSecA}s`,
-    ["--gap" as any]: `${gapPx}px`,
+    "--duration": reduced ? "0s" : `${durationSecA}s`,
+    "--gap": `${gapPx}px`,
   } as React.CSSProperties;
 
   const varsB = {
-    ["--duration" as any]: reduced ? "0s" : `${durationSecB}s`,
-    ["--gap" as any]: `${gapPx}px`,
+    "--duration": reduced ? "0s" : `${durationSecB}s`,
+    "--gap": `${gapPx}px`,
   } as React.CSSProperties;
 
   return (
