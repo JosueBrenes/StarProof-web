@@ -43,8 +43,8 @@ export default function ValueDetails() {
             className="text-left text-xl md:text-6xl font-bold"
             animation="slideLeft"
             by="word"
-            delay={0.5}
-            duration={0.9}
+            delay={0.9}
+            duration={1.2}
           >
             We are the simplest way to issue verifiable credentials.
           </TextAnimate>
@@ -54,9 +54,24 @@ export default function ValueDetails() {
         <motion.div {...fadeInUp} className="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-6">
           <Tabs defaultValue="issuers" className="w-full">
             <TabsList className="grid grid-cols-3 w-full rounded-xl bg-white/5">
-              <TabsTrigger value="issuers">Issuers</TabsTrigger>
-              <TabsTrigger value="holders">Holders</TabsTrigger>
-              <TabsTrigger value="verifiers">Verifiers</TabsTrigger>
+              <TabsTrigger 
+                value="issuers" 
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1B6BFF] data-[state=active]:to-[#8F43FF] data-[state=active]:text-white hover:bg-white/10 transition-all"
+              >
+                Issuers
+              </TabsTrigger>
+              <TabsTrigger 
+                value="holders" 
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1B6BFF] data-[state=active]:to-[#8F43FF] data-[state=active]:text-white hover:bg-white/10 transition-all"
+              >
+                Holders
+              </TabsTrigger>
+              <TabsTrigger 
+                value="verifiers" 
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#1B6BFF] data-[state=active]:to-[#8F43FF] data-[state=active]:text-white hover:bg-white/10 transition-all"
+              >
+                Verifiers
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="issuers">
