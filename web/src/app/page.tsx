@@ -18,7 +18,8 @@ import HowItWorks from "@/components/HowItWorks"
 import WaitlistForm from "@/components/WaitlistForm"
 import FAQ from "@/components/FAQ"
 import ValueProposition from "@/components/ValueProposition"
-import ValuePropositionDetails from "@/components/ValuePropositionDetails"
+import ValuePropositionDetails from "@/components/ValueDetails"
+import ValueDetailsExtended from "@/components/ValueDetailsExtended"
 import { TextAnimate } from "@/components/magicui/text-animate"
 import Footer from "@/components/Footer"
 import { Particles } from "@/components/magicui/particles"
@@ -118,6 +119,12 @@ export default function StarProofLanding() {
       <section className="relative z-10 px-4 sm:px-6 py-6 sm:py-14">
         <div className="relative max-w-6xl mx-auto">
           <ValuePropositionDetails  />
+        </div>
+      </section>
+
+      <section className="relative z-10 px-4 sm:px-6 py-6 sm:py-14">
+        <div className="relative max-w-6xl mx-auto">
+          <ValueDetailsExtended />
         </div>
       </section>
 

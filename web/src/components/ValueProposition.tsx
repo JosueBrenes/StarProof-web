@@ -16,6 +16,7 @@ import {
   Code2,
   Gauge,
 } from "lucide-react";
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -35,10 +36,12 @@ export default function ValueProposition() {
         viewport={{ once: true }}
       >
         <motion.div
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/80"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm"
           {...fadeInUp}
         >
-          <span className="font-medium">"Issue trust at the speed of light."</span>
+          <AnimatedShinyText className="font-medium">
+            “Issue trust at the speed of light.”
+          </AnimatedShinyText>
         </motion.div>
       </motion.div>
 

@@ -146,7 +146,20 @@
   to {
     background-position: 0% 0%;
     }
-  }}
+  }
+}
+
+@theme {
+  --animate-shiny-text: shiny-text 8s infinite;
+}
+
+@keyframes shiny-text {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shiny-text {
+    animation: shiny-text 2.25s linear infinite;
+  }
 
 @layer base {
   * {
