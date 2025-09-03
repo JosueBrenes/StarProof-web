@@ -164,6 +164,7 @@ export default function StarProofLanding() {
         </div>
       </section>
 
+      {/* footer section */}
       <footer className="relative z-10 px-4 sm:px-6 py-8 sm:py-12 border-t border-border/50">
         <Footer />
       </footer>
